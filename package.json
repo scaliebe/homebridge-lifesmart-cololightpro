@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Lifesmart Cololight PRO",
   "name": "homebridge-lifesmart-cololightpro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Control Lifesmart Cololight PRO",
   "main": "dist/accessory.js",
   "scripts": {

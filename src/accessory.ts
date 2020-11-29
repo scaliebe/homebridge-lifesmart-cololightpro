@@ -47,9 +47,9 @@ class ColoLightPro implements AccessoryPlugin{
   private readonly coloCmd_FUNC_ON = Buffer.concat([this.coloCmd_prefix, this.coloCmd_config, Buffer.from([0x04, 0x01, 0x03, 0x01, 0xcf, 0x35])]);
   private readonly coloCmd_FUNC_OFF = Buffer.concat([this.coloCmd_prefix, this.coloCmd_config, Buffer.from([0x04, 0x01, 0x03, 0x01, 0xce, 0x1e])]);
   private readonly coloCmd_FUNC_BRIGHTNESS = Buffer.concat([this.coloCmd_prefix, this.coloCmd_config, Buffer.from([0x04, 0x01, 0x03, 0x01, 0xcf])]);
-  private readonly coloCmd_FUNC_STATE = Buffer.from([0x5a, 0x2d, 0x53, 0x45, 0x41, 0x52, 0x43, 0x48, 0x20, 0x2a, 0x20, 0x0d, 0x0a]);
+  //private readonly coloCmd_FUNC_STATE = Buffer.from([0x5a, 0x2d, 0x53, 0x45, 0x41, 0x52, 0x43, 0x48, 0x20, 0x2a, 0x20, 0x0d, 0x0a]);
 
-  private readonly coloCmd_INFO_OFF = Buffer.from([0x5a, 0x2d, 0x53, 0x45, 0x41, 0x52, 0x00, 0x00, 0x00, 0x20, 0x20, 0x0d, 0x0a, 0x00, 0x00, 0x00, 0x02, 0x93, 0x08, 0x40, 0xfa, 0x14, 0x00, 0x40, 0x30, 0x05, 0xbe, 0x0a, 0x0d, 0x01, 0x32, 0x34, 0x36, 0x46, 0x32, 0x38, 0x46, 0x32, 0x31, 0x35, 0x32, 0x43 ]);
+  //private readonly coloCmd_INFO_OFF = Buffer.from([0x5a, 0x2d, 0x53, 0x45, 0x41, 0x52, 0x00, 0x00, 0x00, 0x20, 0x20, 0x0d, 0x0a, 0x00, 0x00, 0x00, 0x02, 0x93, 0x08, 0x40, 0xfa, 0x14, 0x00, 0x40, 0x30, 0x05, 0xbe, 0x0a, 0x0d, 0x01, 0x32, 0x34, 0x36, 0x46, 0x32, 0x38, 0x46, 0x32, 0x31, 0x35, 0x32, 0x43 ]);
 
   private readonly port = 8900;
   private readonly socket = udp.createSocket('udp4');
@@ -105,14 +105,14 @@ class ColoLightPro implements AccessoryPlugin{
       })
       .on(CharacteristicEventTypes.SET, (value: CharacteristicValue, callback: CharacteristicSetCallback) => {
         if (value && this.lightOn != value) {
-          console.log("on")
+          //console.log("on")
           this.socket.send(this.coloCmd_FUNC_ON, this.port, this.host,function(error){
-            console.log(error);
+            //console.log(error);
           });
         } else if(!value) {
-          console.log("off");
+          //console.log("off");
           this.socket.send(this.coloCmd_FUNC_OFF, this.port, this.host,function(error){
-            console.log("off");
+            //console.log("off");
           });        
         }
         this.lightOn = value as boolean;
@@ -135,7 +135,7 @@ class ColoLightPro implements AccessoryPlugin{
           (Buffer.alloc(1)).fill(Math.floor(100 / 255 * this.brightness))]);
 
         this.socket.send(bcmd, this.port, this.host,function(error){
-          console.log("brightness was sent");
+          //console.log("brightness was sent");
         });  
         callback();
       });
@@ -150,7 +150,7 @@ class ColoLightPro implements AccessoryPlugin{
 
 
   identify(): void {
-    console.log("Identify!");
+    //console.log("Identify!");
   }
 
   getServices(): Service[] {
