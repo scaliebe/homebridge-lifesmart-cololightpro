@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Lifesmart Cololight PRO",
   "name": "homebridge-lifesmart-cololightpro",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Control Lifesmart Cololight PRO",
   "main": "dist/accessory.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "postpublish": "npm run clean",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "in-Reach UG & Co. KG",
+  "author": "Sebastian Caliebe",
   "engines": {
     "homebridge": ">=0.4.50",
     "node": ">=10.21.0"
@@ -27,10 +27,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/inReachCo/homebridge-lifesmart-cololightpro.git"
+    "url": "https://github.com/scaliebe/homebridge-lifesmart-cololightpro.git"
   },
   "bugs": {
-    "url": "https://github.com/inReachCo/homebridge-lifesmart-cololightpro/issues"
+    "url": "https://github.com/scaliebe/homebridge-lifesmart-cololightpro/issues"
   },
   "devDependencies": {
     "@types/node": "10.17.19",

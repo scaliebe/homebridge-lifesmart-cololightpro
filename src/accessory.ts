@@ -127,12 +127,12 @@ class ColoLightPro implements AccessoryPlugin{
 
     this.lightService.getCharacteristic(hap.Characteristic.Brightness)
       .on(CharacteristicEventTypes.GET, (callback: CharacteristicGetCallback) => {
-        callback(undefined, Math.floor(100 / 255 * this.brightness));
+        callback(undefined, Math.floor(100 / 255 * Math.max(this.brightness, 0)));
       })
       .on(CharacteristicEventTypes.SET, (value: CharacteristicValue, callback: CharacteristicSetCallback) => {
         this.brightness = 255 / 100 * (value as number);
         var bcmd = Buffer.concat([this.coloCmd_FUNC_BRIGHTNESS, 
-          (Buffer.alloc(1)).fill(Math.floor(100 / 255 * this.brightness))]);
+          (Buffer.alloc(1)).fill(Math.floor(100 / 255 * Math.max(this.brightness, 0)))]);
 
         this.socket.send(bcmd, this.port, this.host,function(error){
           //console.log("brightness was sent");
@@ -145,7 +145,7 @@ class ColoLightPro implements AccessoryPlugin{
 
   updateLight(): void {
     this.lightService.updateCharacteristic(hap.Characteristic.On, this.lightOn);
-    this.lightService.updateCharacteristic(hap.Characteristic.Brightness, Math.floor(100 / 255 * this.brightness));
+    this.lightService.updateCharacteristic(hap.Characteristic.Brightness, Math.floor(100 / 255 * Math.max(this.brightness, 0)));
   }
 
 
